@@ -1,5 +1,8 @@
 package com.ekhunt.backend.model;
+
 import jakarta.persistence.*;
+
+import java.util.List;
 
 @Entity
 @Table(name = "filter")
@@ -8,44 +11,38 @@ public class Filter {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(nullable = false, updatable = false)
     private Long id;
-    @Column(nullable = false, updatable = false)
-    private String type;
-    @Column(nullable = false, updatable = false)
-    private String comparison;
-    @Column(nullable = false, updatable = false)
-    private String value;
+    private String name;
+    @OneToMany(mappedBy = "filter", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Criteria> criteria;
 
     public Filter(){
     }
 
-    public Filter(String type, String comparison, String value) {
-        this.type = type;
-        this.comparison = comparison;
-        this.value = value;
+    public Filter(String name) {
+        this.name = name;
     }
 
-    public String getType(){
-        return type;
+    public String getName() {
+        return this.name;
     }
 
-    public String getComparison() {
-        return comparison;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public String getValue() {
-        return value;
+    public Long getId() {
+        return id;
     }
 
-    public void setType(String type) {
-        this.type = type;
+    public void setId(Long id) {
+        this.id = id;
     }
 
-    public void setComparison(String comparison) {
-        this.comparison = comparison;
+    public List<Criteria> getCriteria() {
+        return this.criteria;
     }
 
-    public void setValue(String value) {
-        this.value = value;
+    public void setCriteria(List<Criteria> criteria) {
+        this.criteria = criteria;
     }
 }
-

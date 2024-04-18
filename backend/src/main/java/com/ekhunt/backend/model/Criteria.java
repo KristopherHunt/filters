@@ -14,14 +14,18 @@ public class Criteria {
     private String comparison;
     @Column(nullable = false, updatable = false)
     private String value;
+    @ManyToOne
+    @JoinColumn(name = "under_filter")
+    private Filter filter;
 
     public Criteria(){
     }
 
-    public Criteria(String type, String comparison, String value) {
+    public Criteria(String type, String comparison, String value, Filter filter) {
         this.type = type;
         this.comparison = comparison;
         this.value = value;
+        this.filter = filter;
     }
 
     public String getType(){
@@ -46,6 +50,14 @@ public class Criteria {
 
     public void setValue(String value) {
         this.value = value;
+    }
+
+    public Filter getFilter() {
+        return filter;
+    }
+
+    public void setFilter(Filter filter) {
+        this.filter = filter;
     }
 }
 

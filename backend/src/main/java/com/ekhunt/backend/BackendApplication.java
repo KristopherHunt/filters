@@ -1,7 +1,9 @@
 package com.ekhunt.backend;
 
 import com.ekhunt.backend.model.Criteria;
+import com.ekhunt.backend.model.Filter;
 import com.ekhunt.backend.repository.CriteriaRepository;
+import com.ekhunt.backend.repository.FilterRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -22,13 +24,17 @@ public class BackendApplication {
 	}
 
 	@Bean
-	public CommandLineRunner testData(CriteriaRepository repository) {
+	public CommandLineRunner testData(CriteriaRepository criteriaRepository, FilterRepository filterRepository) {
 		return args -> {
-			List<Criteria> testData = new ArrayList<>();
-			testData.add(new Criteria("Amount", "Higher", "23"));
-			testData.add(new Criteria("Title", "Contains", "Test"));
-			testData.add(new Criteria("Date", "From", "01.01.2024"));
-			repository.saveAll(testData);
+			List<Criteria> criteriaTestData = new ArrayList<>();
+			Filter testFilter = new Filter("New Year");
+			Filter testFilter2 = new Filter("Age");
+			criteriaTestData.add(new Criteria("Amount", "Higher", "23", testFilter2));
+			criteriaTestData.add(new Criteria("Title", "Contains", "First", testFilter));
+			criteriaTestData.add(new Criteria("Date", "From", "01.01.2024",testFilter));
+			filterRepository.save(testFilter);
+			filterRepository.save(testFilter2);
+			criteriaRepository.saveAll(criteriaTestData);
 		};
 	}
 

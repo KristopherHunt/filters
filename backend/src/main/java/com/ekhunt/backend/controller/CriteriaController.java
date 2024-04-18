@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/v1/filters")
+@RequestMapping("/api/v1/criteria")
 public class CriteriaController {
 
     private final CriteriaService criteriaService;

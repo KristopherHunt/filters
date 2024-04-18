@@ -1,5 +1,6 @@
 package com.ekhunt.backend.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.util.List;
@@ -13,6 +14,7 @@ public class Filter {
     private Long id;
     private String name;
     @OneToMany(mappedBy = "filter", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonIgnore
     private List<Criteria> criteria;
 
     public Filter(){

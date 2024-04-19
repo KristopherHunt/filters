@@ -27,7 +27,6 @@ export class FormComponent {
   private criteriaService = inject(CriteriaService);
   private filterService = inject(FilterService);
   public showDatePicker: boolean[] = [false];
-  //@TODO validation
   public filterForm = this.fb.group({
     filterInfo: this.fb.group({
       name: '',
@@ -122,15 +121,12 @@ export class FormComponent {
   }
 
   public removeCriteria(index: number): void {
-    //@TODO Fix removeCriteria (indexes inside ngFor are weird add unique identifier and remove by that)
     if (this.criteriaGroups.length > 1) {
       this.criteriaGroups.removeAt(index);
     }
   }
 
   public resetForm(): void {
-    //@TODO if top type is title or date before closing doesn't change comparison
-    //@TODO if closed by clicking away resetForm()
     this.filterForm = this.fb.group({
       filterInfo: this.fb.group({
         name: '',

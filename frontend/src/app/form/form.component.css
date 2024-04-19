@@ -15,3 +15,11 @@ mat-form-field {
 .scrollable {
   overflow: scroll;
 }
+
+.modeless{
+  max-width: 750px;
+  left:18%;
+  bottom:auto;
+  right:auto;
+  margin-left: 10%;
+}

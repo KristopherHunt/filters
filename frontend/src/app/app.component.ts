@@ -25,6 +25,14 @@ export class AppComponent implements OnInit {
     this.getFilters();
   }
 
+  public nonModal(boolean: boolean) {
+    if (boolean) {
+      document.getElementById("filterModal")!.classList.add("modeless");
+    } else {
+      document.getElementById("filterModal")!.classList.remove("modeless");
+    }
+  }
+
   public getFilters(): void {
     this.filterService.getFilters().subscribe(
       (response: Filter[]) => {

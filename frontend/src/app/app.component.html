@@ -12,9 +12,17 @@
         <li class="nav-item">
           <button type="button"
                   class="m-3 btn"
+                  (click)="nonModal(false)"
                   data-toggle="modal"
                   data-target="#filterModal">
             Add filter
+          </button>
+          <button type="button"
+                  class="m-3 btn"
+                  (click)="nonModal(true)"
+                  data-toggle="modal"
+                  data-target="#filterModal">
+            Add filter (non-modal)
           </button>
         </li>
       </ul>
@@ -23,7 +31,6 @@
 </nav>
 
 <!-- Table -->
-<!-- @TODO This looks bad-->
 <table class="table" id="filterTable">
   <thead>
   <tr>

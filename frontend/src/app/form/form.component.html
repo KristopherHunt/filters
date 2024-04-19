@@ -1,0 +1,75 @@
+<div class="modal modal-lg fade" id="filterModal" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalScrollableTitle">New filter</h5>
+        <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close" (click)="resetForm()"></button>
+      </div>
+      <div class="scrollable">
+        <form [formGroup]="filterForm">
+
+          <div class="modal-body">
+            <div class="form-row row mb-4">
+              <div class="form-group col-md-2 mt-1">
+                <label for="name">Filter name:</label>
+              </div>
+              <div class="form-group col-md-3" formGroupName="filterInfo">
+                <input class="form-control" type="text" id="name" formControlName="name"
+                       placeholder="New Filter"/>
+              </div>
+            </div>
+
+            <div formGroupName="criteria">
+              @for(criteriaGroup of criteriaGroups.controls; track $index){
+              <div [formGroupName]="$index" class="form-row row mt-2">
+                <div class="form group col-md-2 mt-3">
+                  <label> Criteria {{ $index + 1 }}:</label>
+             </div>
+
+            <div class="form-group col-md-2 mt-2">
+              <select class="form-control" formControlName="type" (change)="onChangeType($index)">
+                    <option *ngFor="let type of types; let i = index" [value]="type.type" selected="selected">{{
+              type.type}}</option>
+                </select>
+            </div>
+
+        <div class="form-group col-md-2 mt-2">
+          <select class="form-control" formControlName="comparison">
+              <option id="selected" *ngFor="let comparison of comparisons[$index]; let i = index" [value]="comparison.comparison">
+              {{comparison.comparison}}</option>
+          </select>
+        </div>
+
+        <div class="form-group col-md-4 mt-2">
+          <input class="form-control" type="text" id="value" formControlName="value" class="form-control" *ngIf="!showDatePicker[$index]"/>
+          <mat-form-field *ngIf="showDatePicker[$index]">
+            <mat-label>Choose a date</mat-label>
+            <input matInput formControlName="value" [matDatepicker]="picker">
+            <mat-hint>MM/DD/YYYY</mat-hint>
+            <mat-datepicker-toggle matIconSuffix [for]="picker">[disabled]="criteriaGroups.at(i).value.value"</mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
+        </div>
+
+        <div class="form-group col-md-2 mt-2">
+          <button type="button" (click)="removeCriteria($index)" class="btn btn-danger">
+            -
+          </button>
+        </div>
+      </div>
+              }
+
+              <div class="text-center">
+                <button type="button" (click)="addCriteria()" class="btn btn-outline-success m-3">Add criteria</button>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" id="close-button" (click)="resetForm()" class="z-index-lower btn btn-secondary" data-dismiss="modal">Close</button>
+            <button type="submit" class="btn btn-primary" (click)="postFilter()">Submit</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,17 @@
+::ng-deep .cdk-overlay-container {
+  z-index:2000;
+}
+
+mat-form-field {
+  height: 67px;
+}
+
+.modal-content {
+  overflow: hidden;
+  resize: vertical;
+  height: 500px;
+}
+
+.scrollable {
+  overflow: scroll;
+}

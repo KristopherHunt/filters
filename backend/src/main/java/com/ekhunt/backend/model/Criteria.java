@@ -1,4 +1,5 @@
 package com.ekhunt.backend.model;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 @Entity
@@ -15,7 +16,7 @@ public class Criteria {
     @Column(nullable = false, updatable = false)
     private String value;
     @ManyToOne
-    @JoinColumn(name = "under_filter")
+    @JoinColumn(name = "filter")
     private Filter filter;
 
     public Criteria(){

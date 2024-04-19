@@ -13,7 +13,7 @@ public class Filter {
     @Column(nullable = false, updatable = false)
     private Long id;
     private String name;
-    @OneToMany(mappedBy = "filter", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "filter")
     @JsonIgnore
     private List<Criteria> criteria;
 

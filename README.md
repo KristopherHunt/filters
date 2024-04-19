@@ -4,7 +4,7 @@ Simple single page web application for saving filters and viewing already existi
 
 ### Languages used
 * [Java v17](https://www.java.com/en/) - backend language.
-* [Angular v17](https://angular.io/) - frontend language.
+* [Angular v17](https://angular.io/) - frontend framework.
 
 ### Built with
 
